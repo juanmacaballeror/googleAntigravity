@@ -1,0 +1,131 @@
+/* ================================================================
+   CRM Inmobiliario — Global CSS
+   Google Font: Inter
+================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-bg:        #0d1b2a;
+  --color-surface:   #0f2236;
+  --color-surface2:  #132d45;
+  --color-border:    #1e3a52;
+  --color-primary:   #2d7dd2;
+  --color-accent:    #f0a500;
+  --color-text:      #e2e8f0;
+  --color-muted:     #64748b;
+  --color-positive:  #21ba45;
+  --color-negative:  #e53935;
+  --radius-sm:  6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.35);
+  --transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #app {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+/* Glass card */
+.glass-card {
+  background: rgba(15,34,54,0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+/* KPI card */
+.kpi-card {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface2) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+.kpi-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+
+.kpi-value   { font-size: 2rem; font-weight: 700; letter-spacing: -1px; }
+.kpi-label   { font-size: .78rem; color: var(--color-muted); text-transform: uppercase; letter-spacing: .05em; margin-top: .25rem; }
+.kpi-delta   { font-size: .8rem; font-weight: 600; margin-top: .5rem; }
+.kpi-delta.up   { color: var(--color-positive); }
+.kpi-delta.down { color: var(--color-negative); }
+
+/* Stage badge */
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .2rem .65rem;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.stage-captacion  { background: rgba(100,116,139,.2); color: #94a3b8; }
+.stage-visita     { background: rgba(45,125,210,.2);  color: #60a5fa; }
+.stage-reserva    { background: rgba(240,165,0,.2);   color: #f0a500; }
+.stage-peritaje   { background: rgba(167,139,250,.2); color: #a78bfa; }
+.stage-notaria    { background: rgba(251,146,60,.2);  color: #fb923c; }
+.stage-vendida    { background: rgba(33,186,69,.2);   color: #4ade80; }
+.stage-descartada { background: rgba(229,57,53,.2);   color: #f87171; }
+
+/* Section title */
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Table overrides */
+.q-table__container { background: transparent !important; }
+.q-table th { color: var(--color-muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; background: var(--color-surface) !important; }
+.q-table td { border-color: var(--color-border) !important; }
+.q-table tr:hover td { background: rgba(45,125,210,.06) !important; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeInUp .4s ease both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .4; }
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--color-positive);
+  animation: pulse-dot 2s infinite;
+}
